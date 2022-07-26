@@ -204,10 +204,10 @@ const snorlaxStats = {
 };
 
 const extractStats = (arr) => {
-  return arr.map((stat) => {
+  return arr.map((element) => {
     return {
-      name: stat.stat.name,
-      total: stat.baseStat + stat.effort
+      name: element.stat.name,
+      total: element.baseStat + element.effort
     };
   });
 };
