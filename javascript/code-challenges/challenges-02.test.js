@@ -22,9 +22,7 @@ CHALLENGE 2
 Write a function named addOne that, given an array of numbers, uses map to return a new array with each value simply incremented by 1.
 ------------------------------------------------------------------------------------------------ */
 
-const addOne = (arr) => {
-  return arr.map((num) => num + 1);
-};
+const addOne = (arr) => arr.map((num) => num + 1);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
