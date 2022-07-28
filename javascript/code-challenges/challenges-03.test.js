@@ -78,11 +78,7 @@ For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 
 const notInFirstArray = (forbiddenValues, arr) => {
   return arr.filter((value) => {
-    if (forbiddenValues.includes(value)) {
-      return false;
-    } else {
-      return true;
-    }
+    return !forbiddenValues.includes(value);
   });
 };
 
@@ -125,15 +121,7 @@ const snorlaxData = {
   weight: 4600,
 };
 
-const getBaseStatGreaterThan = (arr, minBaseStat) => {
-  return arr.filter((value) => {
-    if (value.baseStat > minBaseStat) {
-      return true;
-    } else {
-      return false;
-    }
-  });
-};
+const getBaseStatGreaterThan = (arr, minBaseStat) => arr.filter((value) => value.baseStat > minBaseStat);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
@@ -143,15 +131,7 @@ Write a function named getStatName that is an extension of your getBaseStatGreat
 For example, getStatName(snorlaxData.stats, 50) will return ['special-defense', 'special-attack'].
 ------------------------------------------------------------------------------------------------ */
 
-const getStatName = (arr, minBaseStat) => {
-  return arr.filter((value) => {
-    if (value.baseStat > minBaseStat) {
-      return true;
-    } else {
-      return false;
-    }
-  }).map((value) => value.stat.name);
-};
+const getStatName = (arr, minBaseStat) => arr.filter((value) => value.baseStat > minBaseStat).map((value) => value.stat.name);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8 - Stretch Goal
@@ -202,9 +182,7 @@ const characters = [
   },
 ];
 
-const getCharactersWithoutChildren = (arr) => {
-  return arr.filter((character) => character.children === undefined);
-};
+const getCharactersWithoutChildren = (arr) => arr.filter((character) => character.children === undefined);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 9 - Stretch Goal
@@ -214,9 +192,7 @@ Write a function named evenOddNumericValues that, given an array as input, uses 
 For example: evenOddNumericValues(['Gregor', 2, 4, 1]) returns ['even', 'even', 'odd'].
 ------------------------------------------------------------------------------------------------ */
 
-const evenOddNumericValues = (arr) => {
-  return arr.filter((value) => typeof(value) === 'number').map((value) => value % 2 === 0 ? 'even' : 'odd');
-};
+const evenOddNumericValues = (arr) => arr.filter((value) => typeof(value) === 'number').map((value) => value % 2 === 0 ? 'even' : 'odd');
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
