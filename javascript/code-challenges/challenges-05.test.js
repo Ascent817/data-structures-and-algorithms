@@ -286,9 +286,7 @@ Write a function named extractChildren that, given the array of characters from 
 2) Then, uses reduce to return an array of all the children's names in the filtered array
 ------------------------------------------------------------------------------------------------ */
 
-const extractChildren = (arr) => {
-  return arr.filter((char) => char.name.search('a') !== -1).reduce((total, current) => 'children' in current ? [...total, ...current.children] : total, []);
-};
+const extractChildren = (arr) => arr.filter((char) => (char.name.search('a') !== -1) && char.children !== undefined).reduce((total, current) => [...total, ...current.children], []);
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
