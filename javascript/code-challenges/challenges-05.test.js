@@ -12,7 +12,7 @@ Note the space in between first and last names.
 You can assume that neither firstName nor lastName will be blank
 ------------------------------------------------------------------------------------------------ */
 const toLastNames = people => {
-  // Solution code here...
+  return people.map((person) => (person.firstName + ' ' + person.lastName));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -23,7 +23,8 @@ Write a function named addValues that, given an array of numbers as input, uses 
 ------------------------------------------------------------------------------------------------ */
 
 const addValues = (arr) => {
-  // Solution code here...
+  let initial = 0;
+  return arr.reduce((a, b) => a + b, initial);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -39,7 +40,8 @@ Write a function named addPurchases that, given an array of objects as input, us
 ------------------------------------------------------------------------------------------------ */
 
 const addPurchases = (arr) => {
-  // Solution code here...
+  let initial = 0;
+  return arr.reduce((a, b) => a + b.purchasePrice, initial);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -51,7 +53,8 @@ Note: You may not use the array's built-in length property.
 ------------------------------------------------------------------------------------------------ */
 
 const countNumberOfElements = (arr) => {
-  // Solution code here...
+  let initial = 0;
+  return arr.reduce((a) => a + 1, initial);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -111,7 +114,8 @@ let starWarsData = [{
 }];
 
 const returnNames = (arr) => {
-  // Solution code here...
+  let initial = [];
+  return arr.reduce((a, b) => a.concat(b.name), initial);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -123,7 +127,8 @@ Note: You must use reduce for this challenge. You may not use the built-in .reve
 ------------------------------------------------------------------------------------------------ */
 
 const reversedString = (str) => {
-  // Solution code here...
+  let initial = '';
+  return str.split('').reduce((a, b) => b + a, initial);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -176,7 +181,8 @@ const characters = [
 ];
 
 const countNumberOfChildren = (arr) => {
-  // Solution code here...
+  let initial = 0;
+  return arr.reduce((a, b) => a + (b.children ? b.children.length : 0), initial);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -188,7 +194,14 @@ Hint: The accumulator should begin as { count: 0, sum: 0 }
 ------------------------------------------------------------------------------------------------ */
 
 const calculateAverage = (arr) => {
-  // Solution code here...
+  let initial = {count: 0, sum: 0};
+  let result = arr.reduce((total, b) => {
+    total.count += 1;
+    total.sum += b;
+    return {count: total.count, sum: total.sum};
+  }, initial);
+
+  return result.sum / result.count;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -209,7 +222,8 @@ const isPrime = (value) => {
 };
 
 const countPrimeNumbers = (arr) => {
-  // Solution code here...
+  let initial = 0;
+  return arr.reduce((a, b) => a + (isPrime(b) ? 1 : 0), initial);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -252,7 +266,14 @@ const snorlaxData = {
 };
 
 const extractStat = (statName, arr) => {
-  // Solution code here...
+  let initial = null;
+  return arr.reduce((total, current) => {
+    if (statName === current.stat.name) {
+      return current;
+    } else {
+      return total;
+    }
+  }, initial);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -266,7 +287,7 @@ Write a function named extractChildren that, given the array of characters from 
 ------------------------------------------------------------------------------------------------ */
 
 const extractChildren = (arr) => {
-  // Solution code here...
+  return arr.filter((char) => char.name.search('a') !== -1).reduce((total, current) => 'children' in current ? [...total, ...current.children] : total, []);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -323,31 +344,31 @@ describe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should return the total number of children', () => {
     expect(countNumberOfChildren(characters)).toStrictEqual(14);
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should return the average of the numbers in the array', () => {
     expect(calculateAverage([18, 290, 37, 4, 55, 16, 7, 85 ])).toStrictEqual(64);
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should return a count of the prime numbers in the array', () => {
     expect(countPrimeNumbers([1, 2, 13, 64, 45, 56, 17, 8])).toStrictEqual(3);
   });
 });
 
-xdescribe('Testing challenge 10', () => {
+describe('Testing challenge 10', () => {
   test('It should return any stats that match the input', () => {
     expect(extractStat('speed', snorlaxData.stats)).toStrictEqual({ stat: { url: 'https://pokeapi.co/api/v2/stat/6/', name: 'speed' }, effort: 5, baseStat: 30 });
   });
 });
 
-xdescribe('Testing challenge 11', () => {
+describe('Testing challenge 11', () => {
   test('It should return an array containing the names of the children', () => {
     expect(extractChildren(characters)).toStrictEqual([ 'Robb', 'Sansa', 'Arya', 'Bran', 'Rickon', 'Drogon', 'Rhaegal', 'Viserion', 'Margaery', 'Loras' ]);
     expect(extractChildren(characters).length).toStrictEqual(10);
